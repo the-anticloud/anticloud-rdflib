@@ -1,0 +1,782 @@
+{
+  "schema": "anticloud.tier-bench/1",
+  "project": "RDFLIB",
+  "source": {
+    "repo_path": "E:\\fenta\\Downloads\\The Anticloud\\ANTICLOUD_REPOS\\PHILOSOPHY_SEMANTICS\\RDFLIB\\UPSTREAM_CLONE",
+    "git": {
+      "head": "b3e60e79c9b0b85d760832fb7bd4d0da3392bb76",
+      "url": "https://github.com/RDFLib/rdflib",
+      "branch": "main",
+      "committed_at": "2026-09-15T04:11:20+01:00"
+    }
+  },
+  "metrics": {
+    "files_total": 9035,
+    "source_files_scanned": 534,
+    "lines_of_code": 113708,
+    "languages": {
+      ".jsonld": 2268,
+      ".n3": 1475,
+      ".ttl": 1126,
+      ".rq": 838,
+      ".nq": 794,
+      ".nt": 555,
+      ".py": 536,
+      ".srx": 371,
+      ".trig": 343,
+      ".rdf": 198,
+      ".ru": 148,
+      ".trix": 80,
+      ".html": 56,
+      ".txt": 53,
+      ".md": 39
+    }
+  },
+  "licence": {
+    "spdx": "BSD-3-Clause",
+    "class": "A",
+    "source_file": "LICENSE",
+    "redistribution_allowed": true
+  },
+  "dependencies": {
+    "count": 1,
+    "unique": 1,
+    "by_ecosystem": {
+      "pypi": 1
+    },
+    "list": [
+      {
+        "ecosystem": "pypi",
+        "name": "isodate",
+        "version": ">=0.7.2",
+        "source_file": "pyproject.toml",
+        "raw": "isodate>=0.7.2"
+      }
+    ]
+  },
+  "owasp_top10": {
+    "total_findings": 428,
+    "files_with_findings": 365,
+    "severity": {
+      "high": 14,
+      "medium": 10,
+      "low": 404
+    },
+    "categories": {
+      "A01-BrokenAccessControl": {
+        "count": 0,
+        "findings": []
+      },
+      "A02-CryptographicFailures": {
+        "count": 5,
+        "findings": [
+          {
+            "severity": "medium",
+            "file": "test/test_sparql/test_functions.py",
+            "line": 131,
+            "cwe": "CWE-327",
+            "snippet": "(r'MD5(\"abc\")', Literal(\"900150983cd24fb0d6963f7d28e17f72\")),"
+          },
+          {
+            "severity": "medium",
+            "file": "test/test_issues/test_issue1873.py",
+            "line": 5,
+            "cwe": "CWE-327",
+            "snippet": "[r for r in Graph().query('SELECT (concat(\"\", sha1(?x)) AS ?y) WHERE {}')]"
+          },
+          {
+            "severity": "medium",
+            "file": "rdflib/plugins/sparql/algebra.py",
+            "line": 1564,
+            "cwe": "CWE-327",
+            "snippet": "\"{Builtin_MD5}\", \"MD5(\" + self.convert_node_arg(node.arg) + \")\""
+          },
+          {
+            "severity": "medium",
+            "file": "rdflib/plugins/sparql/operators.py",
+            "line": 147,
+            "cwe": "CWE-327",
+            "snippet": "return Literal(hashlib.md5(s).hexdigest())"
+          },
+          {
+            "severity": "medium",
+            "file": "rdflib/plugins/sparql/parser.py",
+            "line": 781,
+            "cwe": "CWE-327",
+            "snippet": "# | 'MD5' '(' + Expression + ')'"
+          }
+        ]
+      },
+      "A03-Injection": {
+        "count": 11,
+        "findings": [
+          {
+            "severity": "high",
+            "file": "test/test_store/test_nodepickler.py",
+            "line": 46,
+            "cwe": "CWE-502",
+            "snippet": "np2 = pickle.loads(dump)"
+          },
+          {
+            "severity": "high",
+            "file": "test/test_sparql/test_expressions.py",
+            "line": 15,
+            "cwe": "CWE-95",
+            "snippet": "r = e.eval(ctx)"
+          },
+          {
+            "severity": "high",
+            "file": "test/test_namespace/test_definednamespace.py",
+            "line": 307,
+            "cwe": "CWE-95",
+            "snippet": "repro = eval(repr_str)"
+          },
+          {
+            "severity": "high",
+            "file": "test/test_namespace/test_namespace.py",
+            "line": 33,
+            "cwe": "CWE-95",
+            "snippet": "assert self.ns == eval(f\"{self.ns!r}\")"
+          },
+          {
+            "severity": "high",
+            "file": "test/test_literal/test_literal.py",
+            "line": 35,
+            "cwe": "CWE-95",
+            "snippet": "import rdflib  # needed for eval(repr(...)) below"
+          },
+          {
+            "severity": "high",
+            "file": "test/test_issues/test_issue893.py",
+            "line": 26,
+            "cwe": "CWE-502",
+            "snippet": "ds2 = pickle.loads(picklestring)"
+          },
+          {
+            "severity": "high",
+            "file": "rdflib/graph.py",
+            "line": 682,
+            "cwe": "CWE-95",
+            "snippet": "for _s, _o in p.eval(self, s, o):"
+          },
+          {
+            "severity": "high",
+            "file": "rdflib/paths.py",
+            "line": 223,
+            "cwe": "CWE-95",
+            "snippet": "def eval("
+          },
+          {
+            "severity": "high",
+            "file": "rdflib/tools/csv2rdf.py",
+            "line": 300,
+            "cwe": "CWE-95",
+            "snippet": "return eval(v, config_functions)"
+          },
+          {
+            "severity": "high",
+            "file": "rdflib/plugins/sparql/evalutils.py",
+            "line": 83,
+            "cwe": "CWE-95",
+            "snippet": "return EBV(expr.eval(ctx))"
+          },
+          {
+            "severity": "high",
+            "file": "rdflib/plugins/sparql/parserutils.py",
+            "line": 71,
+            "cwe": "CWE-95",
+            "snippet": "return val.eval(ctx)  # recurse?"
+          }
+        ]
+      },
+      "A04-InsecureDesign": {
+        "count": 65,
+        "findings": [
+          {
+            "severity": "low",
+            "file": "test/test_typing.py",
+            "line": 24,
+            "cwe": "CWE-",
+            "snippet": "# TODO Bug - rdflib.plugins.sparql.prepareQuery() will run fine if this"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_util.py",
+            "line": 261,
+            "cwe": "CWE-",
+            "snippet": "\"\"\"Disclaimer: Quick and dirty hack using the n3 parser.\"\"\""
+          },
+          {
+            "severity": "low",
+            "file": "test/utils/result.py",
+            "line": 105,
+            "cwe": "CWE-",
+            "snippet": "# TODO: FIXME: This may be a bug in how we generate bindings"
+          },
+          {
+            "severity": "low",
+            "file": "test/utils/sparql_checker.py",
+            "line": 280,
+            "cwe": "CWE-",
+            "snippet": "# TODO: Add comment explaining why this is being set."
+          },
+          {
+            "severity": "low",
+            "file": "test/utils/__init__.py",
+            "line": 328,
+            "cwe": "CWE-",
+            "snippet": "# TODO FIXME: This should possibly raise an error when used on a ConjunctiveGraph"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_sparql/test_forward_slash_escapes.py",
+            "line": 72,
+            "cwe": "CWE-",
+            "snippet": "# TODO: A 'strict' flag for prepareQuery is under consideration to"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_sparql/test_sparql.py",
+            "line": 180,
+            "cwe": "CWE-",
+            "snippet": "# XXX This might not be intendet behaviour"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_sparql/test_translate_algebra.py",
+            "line": 312,
+            "cwe": "CWE-",
+            "snippet": "# TODO: Execute the raw query (query_text) and the reconstituted query"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_serializers/test_serializer.py",
+            "line": 235,
+            "cwe": "CWE-",
+            "snippet": "# TODO FIXME: Currently nquads rejects requests to seralize"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_serializers/test_serializer_trix.py",
+            "line": 36,
+            "cwe": "CWE-",
+            "snippet": "# TODO: Fix once getGraph/getContext is in conjunctive graph"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_rdf4j/test_e2e/test_e2e_rdf4j_store.py",
+            "line": 109,
+            "cwe": "CWE-",
+            "snippet": "# I don't think this is the correct behaviour. TODO: raise a ticket for this."
+          },
+          {
+            "severity": "low",
+            "file": "test/test_parsers/test_parse_with_skolemize.py",
+            "line": 128,
+            "cwe": "CWE-",
+            "snippet": "# TODO: There's no way to roundtrip datasets with skolemization?"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_namespace/test_definednamespace.py",
+            "line": 79,
+            "cwe": "CWE-",
+            "snippet": "qb_data_file = Path(TEST_DATA_DIR) / \"defined_namespaces\" / \"fake.xxx\""
+          },
+          {
+            "severity": "low",
+            "file": "test/test_namespace/test_definednamespace_creator.py",
+            "line": 70,
+            "cwe": "CWE-",
+            "snippet": "Path(__file__).parent.parent / \"data\" / \"defined_namespaces\" / \"fake.xxx\""
+          },
+          {
+            "severity": "low",
+            "file": "test/test_misc/test_conventions.py",
+            "line": 22,
+            "cwe": "CWE-",
+            "snippet": "# TODO: handle cases where len(path) is not 1"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_issues/test_issue_git_336.py",
+            "line": 37,
+            "cwe": "CWE-",
+            "snippet": "XNS[\"lowecase.xxx-xxx_xxx\"],  # <- not round trippable"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_extras/test_infixowl/test_property.py",
+            "line": 113,
+            "cwe": "CWE-",
+            "snippet": "# TODO, this deletes but does replace?"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_extras/test_infixowl/test_restriction.py",
+            "line": 291,
+            "cwe": "CWE-",
+            "snippet": "# FIXME: Don't do this, it changes the value!!"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_dataset/test_dataset.py",
+            "line": 247,
+            "cwe": "CWE-",
+            "snippet": "TODO: This is somewhat questionable and arbitrary behaviour and should be"
+          },
+          {
+            "severity": "low",
+            "file": "test/jsonld/runner.py",
+            "line": 213,
+            "cwe": "CWE-",
+            "snippet": "# TODO: Change test from graph comparison to json comparison"
+          },
+          {
+            "severity": "low",
+            "file": "test/jsonld/test_localsuite.py",
+            "line": 12,
+            "cwe": "CWE-",
+            "snippet": "# TODO FIXME: We should be using this URI instead of a file URI, but as there is"
+          },
+          {
+            "severity": "low",
+            "file": "test/jsonld/test_onedotone.py",
+            "line": 29,
+            "cwe": "CWE-",
+            "snippet": "# TODO: Literal doesn't preserve representations"
+          },
+          {
+            "severity": "low",
+            "file": "test/jsonld/test_testsuite.py",
+            "line": 25,
+            "cwe": "CWE-",
+            "snippet": "# TODO: Literal doesn't preserve representations"
+          },
+          {
+            "severity": "low",
+            "file": "rdflib/collection.py",
+            "line": 132,
+            "cwe": "CWE-",
+            "snippet": "\"\"\"TODO\"\"\""
+          },
+          {
+            "severity": "low",
+            "file": "rdflib/compare.py",
+            "line": 92,
+            "cwe": "CWE-",
+            "snippet": "# TODO:"
+          }
+        ]
+      },
+      "A05-SecurityMisconfiguration": {
+        "count": 4,
+        "findings": [
+          {
+            "severity": "medium",
+            "file": "rdflib/graph.py",
+            "line": 2245,
+            "cwe": "CWE-1188",
+            "snippet": "s, p, o, c = self._spoc(triple_or_quad, default=True)"
+          },
+          {
+            "severity": "medium",
+            "file": "rdflib/tools/rdfpipe.py",
+            "line": 151,
+            "cwe": "CWE-1188",
+            "snippet": "default=True,"
+          },
+          {
+            "severity": "medium",
+            "file": "rdflib/plugins/sparql/sparql.py",
+            "line": 268,
+            "cwe": "CWE-1188",
+            "snippet": "self.load(d.default, default=True)"
+          },
+          {
+            "severity": "medium",
+            "file": "rdflib/plugins/sparql/update.py",
+            "line": 56,
+            "cwe": "CWE-1188",
+            "snippet": "ctx.load(u.iri, default=True)"
+          }
+        ]
+      },
+      "A06-VulnerableComponents": {
+        "count": 0,
+        "findings": []
+      },
+      "A07-AuthFailures": {
+        "count": 3,
+        "findings": [
+          {
+            "severity": "high",
+            "file": "test/test_graphdb/unit/security_management/test_graphdb_users.py",
+            "line": 482,
+            "cwe": "CWE-798",
+            "snippet": "password=\"newpass\","
+          },
+          {
+            "severity": "high",
+            "file": "test/test_graphdb/unit/models/test_security.py",
+            "line": 72,
+            "cwe": "CWE-798",
+            "snippet": "password=\"password123\","
+          },
+          {
+            "severity": "high",
+            "file": "test/test_graphdb/test_e2e/security/test_e2e_graphdb_users.py",
+            "line": 127,
+            "cwe": "CWE-798",
+            "snippet": "password=\"admin\",  # Must set explicitly to maintain auth"
+          }
+        ]
+      },
+      "A08-SoftwareDataIntegrity": {
+        "count": 339,
+        "findings": [
+          {
+            "severity": "low",
+            "file": "with-fuseki.sh",
+            "line": 182,
+            "cwe": "CWE-319",
+            "snippet": "'PREFIX fuseki: <http://jena.apache.org/fuseki#>' \\"
+          },
+          {
+            "severity": "low",
+            "file": "test/data.py",
+            "line": 9,
+            "cwe": "CWE-319",
+            "snippet": "ALICE_URI = URIRef(\"http://example.org/alice\")"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_deprecation_notice.py",
+            "line": 65,
+            "cwe": "CWE-319",
+            "snippet": "ex = Namespace(\"http://example.org/\")"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_n3.py",
+            "line": 20,
+            "cwe": "CWE-319",
+            "snippet": "@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ."
+          },
+          {
+            "severity": "low",
+            "file": "test/test_nt_misc.py",
+            "line": 86,
+            "cwe": "CWE-319",
+            "snippet": "safe = \"\"\"<http://example.org/alice/foaf.rdf#me> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/foaf/0.1/Person> <http://example.org/alice/foaf1.rdf> .\"\"\""
+          },
+          {
+            "severity": "low",
+            "file": "test/test_path.py",
+            "line": 106,
+            "cwe": "CWE-319",
+            "snippet": "uri = \"http://example.com/foo\""
+          },
+          {
+            "severity": "low",
+            "file": "test/test_roundtrip.py",
+            "line": 166,
+            "cwe": "CWE-319",
+            "snippet": "(rdflib.term.URIRef('example:subject'), rdflib.term.URIRef('http://example.com/predicate'), rdflib.term.Literal('XSD string', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XM"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_skolem_genid.py",
+            "line": 10,
+            "cwe": "CWE-319",
+            "snippet": "\"http://example.com/.well-known/genid/example/Ne864c0e3684044f381d518fdac652f2e\""
+          },
+          {
+            "severity": "low",
+            "file": "test/test_trig.py",
+            "line": 6,
+            "cwe": "CWE-319",
+            "snippet": "rdflib.URIRef(\"http://example.com/s\"),"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_turtle_sort_issue613.py",
+            "line": 19,
+            "cwe": "CWE-319",
+            "snippet": "y = \"\"\"@prefix ex: <http://ex.org> ."
+          },
+          {
+            "severity": "low",
+            "file": "test/test_typing.py",
+            "line": 43,
+            "cwe": "CWE-319",
+            "snippet": "predicate_p = rdflib.URIRef(\"http://example.org/predicates#p\")"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_util.py",
+            "line": 22,
+            "cwe": "CWE-319",
+            "snippet": "@prefix : <http://www.w3.org/2000/10/swap/Primer#>."
+          },
+          {
+            "severity": "low",
+            "file": "test/utils/httpfileserver.py",
+            "line": 127,
+            "cwe": "CWE-319",
+            "snippet": "return f\"http://{host}:{port}\""
+          },
+          {
+            "severity": "low",
+            "file": "test/utils/httpservermock.py",
+            "line": 148,
+            "cwe": "CWE-319",
+            "snippet": "return f\"http://{self.address_string}\""
+          },
+          {
+            "severity": "low",
+            "file": "test/utils/test/test_httpservermock.py",
+            "line": 13,
+            "cwe": "CWE-319",
+            "snippet": "url = \"http://{}:{}\".format(*server.server_address)"
+          },
+          {
+            "severity": "low",
+            "file": "test/utils/test/test_result.py",
+            "line": 142,
+            "cwe": "CWE-319",
+            "snippet": "datatype=URIRef(\"http://www.w3.org/2001/XMLSchema#decimal\"),"
+          },
+          {
+            "severity": "low",
+            "file": "test/utils/namespace/_DAWGT.py",
+            "line": 7,
+            "cwe": "CWE-319",
+            "snippet": "_NS = Namespace(\"http://www.w3.org/2001/sw/DataAccess/tests/test-dawg#\")"
+          },
+          {
+            "severity": "low",
+            "file": "test/utils/namespace/_EARL.py",
+            "line": 7,
+            "cwe": "CWE-319",
+            "snippet": "_NS = Namespace(\"http://www.w3.org/ns/earl#\")"
+          },
+          {
+            "severity": "low",
+            "file": "test/utils/namespace/_MF.py",
+            "line": 7,
+            "cwe": "CWE-319",
+            "snippet": "_NS = Namespace(\"http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#\")"
+          },
+          {
+            "severity": "low",
+            "file": "test/utils/namespace/_QT.py",
+            "line": 7,
+            "cwe": "CWE-319",
+            "snippet": "_NS = Namespace(\"http://www.w3.org/2001/sw/DataAccess/tests/test-query#\")"
+          },
+          {
+            "severity": "low",
+            "file": "test/utils/namespace/_RDFT.py",
+            "line": 7,
+            "cwe": "CWE-319",
+            "snippet": "_NS = Namespace(\"http://www.w3.org/ns/rdftest#\")"
+          },
+          {
+            "severity": "low",
+            "file": "test/utils/namespace/_UT.py",
+            "line": 7,
+            "cwe": "CWE-319",
+            "snippet": "_NS = Namespace(\"http://www.w3.org/2009/sparql/tests/test-update#\")"
+          },
+          {
+            "severity": "low",
+            "file": "test/utils/namespace/__init__.py",
+            "line": 10,
+            "cwe": "CWE-319",
+            "snippet": "EGDC = Namespace(\"http://example.com/\")"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_w3c_spec/test_nquads_w3c.py",
+            "line": 21,
+            "cwe": "CWE-319",
+            "snippet": "REMOTE_BASE_IRI = \"http://www.w3.org/2013/NQuadsTests/\""
+          },
+          {
+            "severity": "low",
+            "file": "test/test_w3c_spec/test_nt_w3c.py",
+            "line": 21,
+            "cwe": "CWE-319",
+            "snippet": "REMOTE_BASE_IRI = \"http://www.w3.org/2013/N-TriplesTests/\""
+          }
+        ]
+      },
+      "A09-LoggingMonitoringFailures": {
+        "count": 0,
+        "findings": []
+      },
+      "A10-SSRF": {
+        "count": 1,
+        "findings": [
+          {
+            "severity": "medium",
+            "file": "admin/get_merged_prs.py",
+            "line": 24,
+            "cwe": "CWE-918",
+            "snippet": "with urllib.request.urlopen(url) as response:"
+          }
+        ]
+      }
+    }
+  },
+  "owasp_llm_top10": {
+    "total_findings": 7,
+    "files_with_findings": 7,
+    "severity": {
+      "high": 0,
+      "medium": 3,
+      "low": 4
+    },
+    "categories": {
+      "LLM01-PromptInjection": {
+        "count": 3,
+        "findings": [
+          {
+            "severity": "medium",
+            "file": "rdflib/plugins/sparql/evaluate.py",
+            "line": 603,
+            "cwe": "CWE-1336",
+            "snippet": "graph += _fillTemplate(template, c)"
+          },
+          {
+            "severity": "medium",
+            "file": "rdflib/plugins/sparql/evalutils.py",
+            "line": 144,
+            "cwe": "CWE-1336",
+            "snippet": "def _fillTemplate("
+          },
+          {
+            "severity": "medium",
+            "file": "rdflib/plugins/sparql/update.py",
+            "line": 133,
+            "cwe": "CWE-1336",
+            "snippet": "g -= _fillTemplate(u.triples, c)  # type: ignore[operator]"
+          }
+        ]
+      },
+      "LLM02-SensitiveInfoDisclosure": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM03-SupplyChain": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM04-DataPoisoning": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM05-ImproperOutputHandling": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM06-ExcessiveAgency": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM07-SystemPromptLeak": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM08-VectorEmbeddingWeaknesses": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM09-Misinformation": {
+        "count": 4,
+        "findings": [
+          {
+            "severity": "low",
+            "file": "test/test_graphdb/unit/models/test_cluster.py",
+            "line": 51,
+            "cwe": "CWE-",
+            "snippet": "assert request.verificationTimeout == verification_timeout"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_graphdb/unit/models/test_import.py",
+            "line": 25,
+            "cwe": "CWE-",
+            "snippet": "assert settings.verifyDataTypeValues is False"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_graphdb/unit/cluster_group/test_graphdb_cluster_get_config.py",
+            "line": 52,
+            "cwe": "CWE-",
+            "snippet": "assert result.verificationTimeout == 1500"
+          },
+          {
+            "severity": "low",
+            "file": "test/test_graphdb/unit/cluster_group/test_graphdb_cluster_update_config.py",
+            "line": 60,
+            "cwe": "CWE-",
+            "snippet": "assert result.verificationTimeout == 1500"
+          }
+        ]
+      },
+      "LLM10-UnboundedConsumption": {
+        "count": 0,
+        "findings": []
+      }
+    }
+  },
+  "sbom": {
+    "bomFormat": "CycloneDX",
+    "specVersion": "1.5",
+    "serialNumber": "urn:uuid:dc51174f-6868-5d15-91ea-8f421cca438c",
+    "version": 1,
+    "metadata": {
+      "timestamp": "2026-10-06T06:13:44Z",
+      "component": {
+        "type": "application",
+        "name": "RDFLIB",
+        "version": "b3e60e79c9b0",
+        "bom-ref": "pkg:generic/anticloud/RDFLIB@b3e60e79c9b0",
+        "purl": "pkg:generic/anticloud/RDFLIB@b3e60e79c9b0",
+        "licenses": [
+          {
+            "license": {
+              "id": "BSD-3-Clause"
+            }
+          }
+        ]
+      },
+      "properties": [
+        {
+          "name": "anticloud:source-commit",
+          "value": "b3e60e79c9b0b85d760832fb7bd4d0da3392bb76"
+        },
+        {
+          "name": "anticloud:source-url",
+          "value": "https://github.com/RDFLib/rdflib"
+        },
+        {
+          "name": "anticloud:tier",
+          "value": "tier-agent"
+        }
+      ]
+    },
+    "components": [
+      {
+        "type": "library",
+        "name": "isodate",
+        "version": ">=0.7.2",
+        "purl": "pkg:pypi/isodate@0.7.2",
+        "bom-ref": "pypi/isodate@>=0.7.2"
+      }
+    ]
+  },
+  "elapsed_seconds": 231.13
+}
